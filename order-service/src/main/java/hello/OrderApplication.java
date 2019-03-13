@@ -54,9 +54,13 @@ class OrderController {
     @Value("${spring.application.name}")
     private String appName;
 
+    @Value("${server.port}")
+    private String port;
+
     @RequestMapping("/transactional/message")
     String getMessage() {
-        return "Application:" + appName;
+        log.info("Do getMessage");
+        return "Application:" + appName + " port:" + port;
     }
 
     @RequestMapping("/transactional/allOrderTable")
