@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: stock-service
+  datasource:
+    url: jdbc:mysql://localhost:3310/saga_stock
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: secret
+    platform: mysql
+    continue-on-error: true
+    initialization-mode: always
+  jpa:
+#    database-platform: org.hibernate.dialect.MySQL57Dialect
+    show-sql: true
+    format_sql: true
+    use_sql_comments: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+health:
+  config:
+    enabled: true
+
+management:
+  security:
+    enabled: false

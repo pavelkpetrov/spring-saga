@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: saga-gateway
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+health:
+  config:
+    enabled: true
+
+management:
+  security:
+    enabled: false
+
+
+zuul:
+  host:
+    socket-timeout-millis: 10000
+  ignoredServices: "*"
+  routes:
+    stock-service:
+      path: /stock-service/**
+      serviceId: stock-service
+    order-service:
+      path: /order-service/**
+      serviceId: order-service
+
+
+ribbon:
+  ReadTimeout: 60000
+  eureka:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 122000
+
+#logging:
+#  file: ./gateway_service.log
+
+logging:
+  driver: syslog
+  options:
+    syslog-address: "tcp://127.0.0.1:25826"

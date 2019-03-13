@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:mysql://localhost:3310/saga_order
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: secret
+    platform: mysql
+    continue-on-error: true
+    initialization-mode: always
+  jpa:
+#    database-platform: org.hibernate.dialect.MySQL57Dialect
+    show-sql: true
+    format_sql: true
+    use_sql_comments: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+#health:
+#  config:
+#    enabled: true
+
+management:
+  security:
+    enabled: false
+
+feign:
+    hystrix:
+        enabled: true
+
+ribbon:
+  eureka:
+   enabled: true
